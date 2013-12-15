@@ -167,4 +167,27 @@ public abstract class Command {
         }
     }
 
+    public void waitForFinish(int timeout) throws TimeoutException, BrokenBusyboxException {
+        synchronized (this) {
+            while (!finished) {
+                try {
+                    this.wait(timeout);
+                } catch (InterruptedException e) {
+                    Log.e(RootCommands.TAG, "InterruptedException in waitForFinish()", e);
+                }
+
+                if (!finished) {
+                    finished = true;
+                    terminate("Timeout");
+                    throw new TimeoutException("Timeout has occurred.");
+                }
+            }
+
+            if (brokenBusyboxDetected) {
+                throw new BrokenBusyboxException();
+            }
+
+            processAfterExecution(exitCode);
+        }
+    }
 }
