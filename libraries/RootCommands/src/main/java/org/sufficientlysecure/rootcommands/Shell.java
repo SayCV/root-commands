@@ -25,10 +25,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
 import org.sufficientlysecure.rootcommands.command.Command;
 import org.sufficientlysecure.rootcommands.util.Log;
 import org.sufficientlysecure.rootcommands.util.RootAccessDeniedException;
 import org.sufficientlysecure.rootcommands.util.Utils;
+
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.android.LogcatAppender;
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.FileAppender;
 
 public class Shell implements Closeable {
     private final Process shellProcess;
@@ -251,7 +259,7 @@ public class Shell implements Closeable {
         int commandIndex = 0;
         while (true) {
             String lineStdOut = stdOutErr.readLine();
-
+            Log.d(RootCommands.TAG, "readLine"+lineStdOut);
             // terminate on EOF
             if (lineStdOut == null)
                 break;

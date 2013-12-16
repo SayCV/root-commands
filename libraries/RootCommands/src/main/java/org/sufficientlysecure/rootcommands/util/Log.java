@@ -26,58 +26,58 @@ public final class Log {
 
     public static void v(String tag, String msg) {
         if (RootCommands.DEBUG) {
-            android.util.Log.v(tag, msg);
+            RootCommands.logger.debug(tag + " " +msg);
         }
     }
 
     public static void v(String tag, String msg, Throwable tr) {
         if (RootCommands.DEBUG) {
-            android.util.Log.v(tag, msg, tr);
+            RootCommands.logger.debug(tag + " " +msg, tr);
         }
     }
 
     public static void d(String tag, String msg) {
         if (RootCommands.DEBUG) {
-            android.util.Log.d(tag, msg);
+            RootCommands.logger.debug(tag + " " +msg);
         }
     }
 
     public static void d(String tag, String msg, Throwable tr) {
         if (RootCommands.DEBUG) {
-            android.util.Log.d(tag, msg, tr);
+            RootCommands.logger.debug(tag + " " +msg, tr);
         }
     }
 
     public static void i(String tag, String msg) {
         if (RootCommands.DEBUG) {
-            android.util.Log.i(tag, msg);
+            RootCommands.logger.info(tag + " " +msg);
         }
     }
 
     public static void i(String tag, String msg, Throwable tr) {
         if (RootCommands.DEBUG) {
-            android.util.Log.i(tag, msg, tr);
+            RootCommands.logger.info(tag + " " +msg, tr);
         }
     }
 
     public static void w(String tag, String msg) {
-        android.util.Log.w(tag, msg);
+        RootCommands.logger.warn(tag + " " +msg);
     }
 
     public static void w(String tag, String msg, Throwable tr) {
-        android.util.Log.w(tag, msg, tr);
+        RootCommands.logger.warn(tag + " " +msg, tr);
     }
 
     public static void w(String tag, Throwable tr) {
-        android.util.Log.w(tag, tr);
+        RootCommands.logger.warn(tag, tr);
     }
 
     public static void e(String tag, String msg) {
-        android.util.Log.e(tag, msg);
+        RootCommands.logger.error(tag + " " +msg);
     }
 
     public static void e(String tag, String msg, Throwable tr) {
-        android.util.Log.e(tag, msg, tr);
+        RootCommands.logger.error(tag + " " +msg, tr);
     }
 
 }

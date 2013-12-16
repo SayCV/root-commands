@@ -167,7 +167,7 @@ public abstract class Command {
         }
     }
 
-    public void waitForFinish(int timeout) throws TimeoutException, BrokenBusyboxException {
+    public void waitForFinish(int timeout) throws BrokenBusyboxException {
         synchronized (this) {
             while (!finished) {
                 try {
@@ -178,8 +178,8 @@ public abstract class Command {
 
                 if (!finished) {
                     finished = true;
-                    terminate("Timeout");
-                    throw new TimeoutException("Timeout has occurred.");
+                    //terminate("Timeout");
+                    Log.e(RootCommands.TAG, "Timeout has occurred.");
                 }
             }
 
