@@ -31,10 +31,11 @@ public class RootCommands {
     public static int DEFAULT_TIMEOUT = 10000;
 
     public static final String TAG = "RootCommands";
+    public static String LOGFILE = "RootCommands.log";
 
     public static final org.slf4j.Logger logger = LoggerFactory.getLogger(Log.class);
 
-    private static void configureLogbackDirectly(String file) {
+    private static void configureLogbackDirectly() {
         // reset the default context (which may already have been initialized)
         // since we want to reconfigure it
         LoggerContext lc = (LoggerContext)LoggerFactory.getILoggerFactory();
@@ -48,7 +49,7 @@ public class RootCommands {
 
         FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
         fileAppender.setContext(lc);
-        fileAppender.setFile(file);
+        fileAppender.setFile(LOGFILE);
         fileAppender.setEncoder(encoder1);
         fileAppender.start();
 
@@ -72,7 +73,8 @@ public class RootCommands {
 
     public static void init(boolean debug, String file) {
         DEBUG = debug;
-        configureLogbackDirectly(file);
+        LOGFILE = file;
+        configureLogbackDirectly();
     }
     /**
      * General method to check if user has su binary and accepts root access for this program!

@@ -259,7 +259,6 @@ public class Shell implements Closeable {
         int commandIndex = 0;
         while (true) {
             String lineStdOut = stdOutErr.readLine();
-            Log.d(RootCommands.TAG, "readLine"+lineStdOut);
             // terminate on EOF
             if (lineStdOut == null)
                 break;
